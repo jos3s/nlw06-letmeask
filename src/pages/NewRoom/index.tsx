@@ -5,10 +5,9 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Letmeask } from '../../components/Letmeask';
 
 import ilustrationImg from "../../assets/images/illustration.svg";
-import logoImg from "../../assets/images/logo.svg";
-
 
 export const NewRoom = () => {
   const { user } = useAuth();
@@ -22,11 +21,11 @@ export const NewRoom = () => {
       </Styled.Left>
       <Styled.Right as="main">
         <Styled.Content>
-          <img src={logoImg} alt="Letmeask" />
+          <Letmeask/>
           <h2>Eai {user?.name}, crie uma nova sala:</h2>
           <form>
             <Input type="text" placeholder="Nome da sala" />
-            <Button type="submit">
+            <Button btnType="fill" type="submit">
               Criar na sala
             </Button>
           </form>
