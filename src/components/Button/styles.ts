@@ -1,12 +1,22 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+type ButtonProps={
+  btnType:'fill' | 'outline',
+  btnG:boolean,
+}
+
+export const Button = styled.button<ButtonProps>`
   margin-top:${({ theme }) => theme.spacings.sm};
   height: 5rem;
   border-radius:${({ theme }) => theme.borderRadius.md};
-  border:0;
   font-weight:500;
-  background:${({ theme }) => theme.colors.purple.light};
+
+  border:${({btnType, theme }) => btnType!=="fill"? theme.colors.purple.light +" solid .2rem " : 0} ;
+  background:${({btnG, btnType, theme }) => (
+    btnType==="fill"
+    ? (btnG ? theme.colors.google : theme.colors.purple.light )
+    : ("transparent")) };
+
   color:${({ theme }) => theme.colors.white.medium};
   width:100%;
   padding:0 ${({ theme }) => theme.spacings.xl};

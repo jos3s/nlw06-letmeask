@@ -1,10 +1,19 @@
 import { ButtonHTMLAttributes } from 'react';
 import * as Styled from './styles';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  btnType:'fill' | 'outline',
+  btnG?:boolean,
+}
 
 export const Button = (props: ButtonProps) => {
   return (
-    <Styled.Button {...props}>{props.children}</Styled.Button>
+    <Styled.Button 
+      {...props} 
+      btnType={props.btnType} 
+      btnG={props?.btnG || false}
+    >
+      {props.children}
+      </Styled.Button>
   )
 }
