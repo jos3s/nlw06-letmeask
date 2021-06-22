@@ -1,11 +1,19 @@
-import React from 'react';
-import {Button} from './components/Button';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './styles/globalTheme';
+import { light, dark } from './styles/theme';
+
+import { Routes } from './routers/index';
+
+import { AuthContextProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <ThemeProvider theme={light}>
+      <AuthContextProvider>
+        <Routes />
+      </AuthContextProvider>
+      <GlobalStyle />
+    </ThemeProvider >
   );
 }
 
