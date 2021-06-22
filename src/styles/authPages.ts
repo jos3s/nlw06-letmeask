@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Container as LogoContainer} from "../components/Letmeask/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -55,7 +56,7 @@ export const Content = styled.div`
 
   text-align:center;
 
-  & > img{
+  & > ${LogoContainer}{
     align-self:center;
   }
 
@@ -100,31 +101,5 @@ export const Separator = styled.div`
     height:1px;
     background:${({ theme }) => theme.colors.gray.medium};
     margin-left:${({ theme }) => theme.spacings.md};
-  }
-`;
-
-export const ButtonG = styled.button`
-  margin-top:${({ theme }) => theme.spacings.xxl};
-  height: 5rem;
-  border-radius:${({ theme }) => theme.borderRadius.md};
-  border:0;
-  font-weight:500;
-  background:#EA4335;
-  color:${({ theme }) => theme.colors.white.medium};
-  width:100%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-  transition:all 0.2s;
-
-  &> img{
-    margin-right:${({ theme }) => theme.spacings.xsm};
-  }
-
-  &:hover{
-    filter:brightness(0.9);
   }
 `;
