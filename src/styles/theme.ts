@@ -43,6 +43,7 @@ export const light: DefaultTheme = {
       light: "#835AFD",
       dark: "#835afd99",
     },
+    google:'#EA4335',
     danger: "#E73F5D",
     gray: {
       dark: "#737380",
@@ -79,6 +80,7 @@ export const dark: DefaultTheme = {
       light: "#835AFD",
       dark: "#835afd99",
     },
+    google:'#EA4335',
     danger: "#E73F5D",
     gray: {
       dark: "#737380",
@@ -97,7 +99,7 @@ export const dark: DefaultTheme = {
   ...styles,
 }
 
-export const themeColorsFigma = {
+const themeColorsFigma = {
   black: "#29292E",
   shadow: "#050206",
   purple: "#835AFD",

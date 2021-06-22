@@ -19,6 +19,7 @@ declare module 'styled-components' {
         light: string,
         dark: string,
       },
+      google:string,
       danger: string,
       gray: {
         dark: string,
