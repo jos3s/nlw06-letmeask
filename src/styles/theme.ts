@@ -32,6 +32,7 @@ export const light: DefaultTheme = {
     bg: {
       body: "#F8F8F8",
       modal: "#F8F8F8",
+      input:"#0e1027",
     },
     textColor: {
       primary: "#29292E",
@@ -67,8 +68,9 @@ export const dark: DefaultTheme = {
   title: 'dark',
   colors: {
     bg: {
-      body: "#20163D",
+      body: "#030518",
       modal: "#29292E",
+      input:"#0e1027",
     },
     textColor: {
       primary: "#FEFEFE",
@@ -118,6 +120,3 @@ const themeColorsFigma = {
     light: "#D67EE2",
   }
 }
-/*
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> */

@@ -8,6 +8,7 @@ declare module 'styled-components' {
       bg: {
         body: string,
         modal: string,
+        input:string,
       },
       textColor: {
         primary: string,
