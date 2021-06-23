@@ -35,7 +35,7 @@ export const Text = styled.span`
   padding: 0 1.2rem;
   display:block;
   flex:1;
-  color: ${({ theme }) => theme.title ==="dark" ? theme.colors.textColor.primary : theme.colors.textColor.primary};
+  color: ${({ theme }) => theme.colors.textColor.primary};
   align-self: center;
   padding:0 ${({ theme }) => theme.spacings.md} 0 12px;
   width:23rem;

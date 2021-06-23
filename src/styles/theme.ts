@@ -27,12 +27,12 @@ const styles = {
 }
 
 export const light: DefaultTheme = {
-  title: 'light',
+  isLight: true,
   colors: {
     bg: {
       body: "#F8F8F8",
       modal: "#F8F8F8",
-      input:"#0e1027",
+      input:"#F8F8F8",
     },
     textColor: {
       primary: "#29292E",
@@ -65,7 +65,7 @@ export const light: DefaultTheme = {
 
 
 export const dark: DefaultTheme = {
-  title: 'dark',
+  isLight:false,
   colors: {
     bg: {
       body: "#030518",

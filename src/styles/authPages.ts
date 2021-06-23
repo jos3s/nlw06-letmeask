@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Container as LogoContainer} from "../components/Letmeask/styles";
+import {Button as ToggleThemeContainer} from "../components/ToggleTheme/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
 export const Left = styled.div`
   flex:7;
-  background-color:${({ theme }) => theme.title === "light" ? theme.colors.purple.light : theme.colors.purple.dark};
+  background-color:${({ theme }) => theme.isLight ? theme.colors.purple.light : theme.colors.purple.dark};
 
   display:flex;
   flex-direction:column;
@@ -64,18 +65,27 @@ export const Content = styled.div`
     font-size:${({ theme }) => theme.font.sizes.lg};
     margin:${({ theme }) => theme.spacings.xxl} 0 ${({ theme }) => theme.spacings.lg};
     font-family:${({ theme }) => theme.font.primary};
-    color:${({ theme }) => theme.title === "light" ? theme.colors.black : theme.colors.white.medium};
+    color:${({ theme }) => theme.isLight ? theme.colors.black : theme.colors.white.medium};
   }
 
   &>p{
     font-size:${({ theme }) => theme.font.sizes.sm};
-    color:${({ theme }) => theme.title === "light" ? theme.colors.gray.dark : theme.colors.gray.light};
+    color:${({ theme }) => theme.isLight ? theme.colors.gray.dark : theme.colors.gray.light};
     margin-top:${({ theme }) => theme.spacings.md};
     
     >a{
       color:${({ theme }) => theme.colors.pink.medium};
       text-decoration:none;
     }
+  }
+
+  > ${ToggleThemeContainer}{
+    position: fixed; 
+    z-index: 1; 
+    right: 3rem; 
+    top: 3rem; 
+    font-size:${({ theme }) => theme.font.sizes.lg};
+    padding:.5rem;
   }
 `;
 
