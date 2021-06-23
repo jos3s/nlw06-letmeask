@@ -103,3 +103,22 @@ export const Separator = styled.div`
     margin-left:${({ theme }) => theme.spacings.md};
   }
 `;
+
+export const User = styled.div`
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  margin:${({ theme }) => theme.spacings.xxl} 0 ${({ theme }) => theme.spacings.lg};
+
+  > img {
+    width:5rem;
+    height:5rem;
+    border-radius:50%;
+    box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
+  }
+  > h2{
+    margin-top:0;
+    margin-bottom:0;
+    text-align:left;
+  }
+`;
