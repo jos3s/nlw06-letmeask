@@ -1,19 +1,15 @@
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from './styles/globalTheme';
-import { light, dark } from './styles/theme';
-
 import { Routes } from './routers/index';
 
+import {ThemeContextProvider} from './contexts/ThemeContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <ThemeProvider theme={light}>
+    <ThemeContextProvider>
       <AuthContextProvider>
         <Routes />
       </AuthContextProvider>
-      <GlobalStyle />
-    </ThemeProvider >
+    </ThemeContextProvider >
   );
 }
 
