@@ -34,6 +34,7 @@ export const Main = styled.div`
       padding:${({ theme })=>theme.spacings.md};
       border-radius:${({ theme })=>  theme.borderRadius.md};
       background:${({ theme }) =>  theme.title ==="dark" ? theme.colors.bg.input : theme.colors.white.light};
+      color:${({ theme }) => theme.colors.textColor.primary};
       box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
       resize:vertical;
       min-height:130px;
