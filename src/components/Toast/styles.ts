@@ -1,6 +1,28 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
-export const Alert = styled.div`
+const FadeIn = keyframes`
+  from {
+    right: -3em; 
+    opacity: 0;
+  }
+  to {
+    right: 0; 
+    opacity: 1;
+  }
+`;
+
+const FadeOut = keyframes`
+  from {
+    right: 0; 
+    opacity: 1;
+  }
+  to {
+    right: -3em; 
+    opacity: 0;
+  }
+`;
+
+export const Container = styled.div`
   font-weight:500;
   color:${({ theme }) => theme.colors.white.light};
   min-width: 250px; 
@@ -13,6 +35,8 @@ export const Alert = styled.div`
   z-index: 1; 
   right: 0; 
   top: 30px; 
+  animation: ${FadeIn} 0.5s, ${FadeOut} .5s 1s;
+  animation-fill-mode: none, forwards;
 
   p{
     display:flex;
@@ -21,3 +45,4 @@ export const Alert = styled.div`
     opacity:0.9;
   }
 `;
+
