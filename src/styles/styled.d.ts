@@ -13,6 +13,7 @@ declare module 'styled-components' {
       textColor: {
         primary: string,
         details: string,
+        input:string,
       },
       black: string,
       shadow: string,

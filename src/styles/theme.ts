@@ -37,6 +37,7 @@ export const light: DefaultTheme = {
     textColor: {
       primary: "#29292E",
       details: "#737380",
+      input:"#835AFD",
     },
     black: "#29292E",
     shadow: "#050206",
@@ -75,6 +76,7 @@ export const dark: DefaultTheme = {
     textColor: {
       primary: "#FEFEFE",
       details: "#F8F8F8",
+      input:"#FEFEFE",
     },
     black: "#29292E",
     shadow: "#050206",
@@ -101,22 +103,3 @@ export const dark: DefaultTheme = {
   ...styles,
 }
 
-const themeColorsFigma = {
-  black: "#29292E",
-  shadow: "#050206",
-  purple: "#835AFD",
-  danger: "#E73F5D",
-  gray: {
-    dark: "#737380",
-    medium: "#A8A8B3",
-    light: "#DBDCDD",
-  },
-  white: {
-    medium: "#F8F8F8",
-    light: "#FEFEFE",
-  },
-  pink: {
-    medium: "#E559F9",
-    light: "#D67EE2",
-  }
-}
