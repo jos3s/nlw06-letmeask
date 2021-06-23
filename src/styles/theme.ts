@@ -69,9 +69,9 @@ export const dark: DefaultTheme = {
   isLight:false,
   colors: {
     bg: {
-      body: "#030518",
+      body: "#0e1027 ",
       modal: "#29292E",
-      input:"#0e1027",
+      input:"#030518",
     },
     textColor: {
       primary: "#FEFEFE",
