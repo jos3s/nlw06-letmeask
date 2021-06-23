@@ -40,7 +40,7 @@ export const Room = () => {
   const [newQuestion, setNewQuestion] = useState('');
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [title, setTitle] = useState('');
-  const [questionSend, setQuestionSend] = useState(false);
+  const [questionSend, setQuestionSend] = useState('not');
 
   const {user} = useAuth();
   const params =useParams<RoomParams>();
@@ -70,9 +70,21 @@ export const Room = () => {
 
   const handleSendQuestion = async (event: FormEvent)=>{
     event.preventDefault();
-    if(newQuestion.trim()==='') return;
+    if(newQuestion.trim()==='') {
+      setQuestionSend('warning');
+      setTimeout(() => {
+        setQuestionSend('not');
+      },1500);
+      return;
+    };
 
-    if(!user) return;
+    if(!user) {
+      setQuestionSend('error');
+      setTimeout(() => {
+        setQuestionSend('not');
+      },1500);
+      return;
+    };
 
     const question={
       content:newQuestion,
@@ -86,9 +98,9 @@ export const Room = () => {
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
     setNewQuestion('');
-    setQuestionSend(true);
+    setQuestionSend('send');
     setTimeout(() => {
-      setQuestionSend(false);
+      setQuestionSend('not');
     },1500);
   }
 
@@ -103,14 +115,18 @@ export const Room = () => {
           </Styled.Tools>
         </div>
       </Styled.Header>
-      {questionSend && <Toast type="info">Pergunta enviada!</Toast>}
+
+      {questionSend==="error" && <Toast type="error">Você precisa estar logado!</Toast>}
+      {questionSend==="warning" && <Toast type="warning">Preencha a pergunta para enviar!</Toast>}
+      {questionSend==="send" && <Toast type="info">Pergunta enviada!</Toast>}
+
       <Styled.Main>
         <Styled.Title>
           <h1>Sala {title}</h1>
           {questions.length >0 && <span>{questions.length} pergunta(s)</span>}
         </Styled.Title>
 
-        <form onSubmit={handleSendQuestion}>
+        <Styled.Form onSubmit={handleSendQuestion}>
           <textarea 
             placeholder="Digite a sua pergunta..." 
             value={newQuestion}
@@ -127,7 +143,7 @@ export const Room = () => {
             )}
             <Button btnType="fill" disabled={!user}>Enviar pergunta</Button>
           </Styled.FormFooter>
-        </form>
+        </Styled.Form>
       </Styled.Main>
     </Styled.Container>
   );

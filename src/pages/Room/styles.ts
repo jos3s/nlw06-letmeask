@@ -4,9 +4,7 @@ import {Container as ToastContainer} from "../../components/Toast/styles"
 import {Button as ToggleThemeContainer} from "../../components/ToggleTheme/styles"
 
 export const Container = styled.div`
-  ${ToastContainer}{
-    top:3rem;
-  }
+  
 `;
 
 export const Header = styled.div`
@@ -35,21 +33,21 @@ export const Tools = styled.div`
 `;
 
 export const Main = styled.div`
-  max-width:800px;
+  max-width:80rem;
   margin:0 auto;
+`;
 
-  > form{
-    >textarea {
-      width:100%;
-      border:0;
-      padding:${({ theme })=>theme.spacings.md};
-      border-radius:${({ theme })=>  theme.borderRadius.md};
-      background:${({ theme }) =>  theme.colors.bg.input};
-      color:${({ theme }) => theme.colors.textColor.primary};
-      box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
-      resize:vertical;
-      min-height:130px;
-    }
+export const Form = styled.form`
+  >textarea {
+    width:100%;
+    border:0;
+    padding:${({ theme })=>theme.spacings.md};
+    border-radius:${({ theme })=>  theme.borderRadius.md};
+    background:${({ theme }) =>  theme.colors.bg.input};
+    color:${({ theme }) => theme.colors.textColor.primary};
+    box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
+    resize:vertical;
+    min-height:13rem;
   }
 `;
 
@@ -81,6 +79,23 @@ export const FormFooter = styled.div`
     }
 `;
 
+export const User = styled.div`
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+
+  > img {
+    width:${({ theme }) => theme.spacings.xl};
+    height:${({ theme }) => theme.spacings.xl};
+    border-radius:50%;
+  }
+  >span{
+    font-weight:500;
+    font-size:${({ theme})=>theme.font.sizes.sm};
+    color:${({ theme }) => theme.colors.textColor.details};
+  }
+
+`;
 
 export const Title = styled.div`
   display:flex;
@@ -102,23 +117,4 @@ export const Title = styled.div`
     background:${({theme})=>theme.colors.pink.medium};
     margin-left:${({ theme }) => theme.spacings.sm};
   }
-`;
-
-
-export const User = styled.div`
-  display:flex;
-  align-items:center;
-  gap:.8rem;
-
-  > img {
-    width:${({ theme }) => theme.spacings.xl};
-    height:${({ theme }) => theme.spacings.xl};
-    border-radius:50%;
-  }
-  >span{
-    font-weight:500;
-    font-size:${({ theme})=>theme.font.sizes.sm};
-    color:${({ theme }) => theme.colors.textColor.details};
-  }
-
 `;

@@ -35,7 +35,10 @@ export const Home = () => {
   const handleJoinRoom = async (event:FormEvent) => {
     event.preventDefault();
 
-    if(roomCode.trim()==='') return;
+    if(roomCode.trim()==='') {
+      setSignInRoom('empty');
+      return;
+    };
 
     const roomRef=await database.ref(`rooms/${roomCode}`).get();
 
@@ -61,7 +64,7 @@ export const Home = () => {
         <Styled.Content>
           <ToggleTheme />
           <Letmeask/>
-
+          <strong className="mobile">Crie salas de Q&amp;A ao-vivo</strong>
           <Button btnG={true} btnType="fill" onClick={handleCreateRoom}>
             <img src={googleIcon} alt="Logo do Google" />
             Crie sua sala com o Google
@@ -71,8 +74,15 @@ export const Home = () => {
 
           <Styled.Separator>ou entre em uma sala</Styled.Separator>
 
-          {signInRoom === "conectedRoom" && <Toast type="info">Conectado a sala com sucesso!</Toast>}
-          {signInRoom === "error" && <Toast type="info">A sala não existe!</Toast>}
+          {signInRoom === "conectedRoom" && (
+            <Toast type="info">Conectado a sala com sucesso!</Toast>
+          )}
+          {signInRoom === "empty" && (
+            <Toast type="warning">Digite o código da sala!</Toast>
+          )}
+          {signInRoom === "error" &&( 
+            <Toast type="error">A sala não existe!</Toast>
+          )}
 
           <form onSubmit={handleJoinRoom}>
             <Input 
