@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Container as LogoContainer} from "../components/Letmeask/styles";
-import {Button as ToggleThemeContainer} from "../components/ToggleTheme/styles";
+import {Container as ToggleThemeContainer} from "../components/ToggleTheme/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -59,6 +59,18 @@ export const Content = styled.div`
   width:100%;
   max-width:320px;
 
+  & > ${ToggleThemeContainer}{
+    position: fixed; 
+    z-index: 1; 
+    right: 3rem; 
+    top: 3rem; 
+    padding:.5rem;
+
+    > button{
+      font-size:${({ theme }) => theme.font.sizes.xl};
+    }
+  }
+
   text-align:center;
 
   & > ${LogoContainer}{
@@ -93,15 +105,6 @@ export const Content = styled.div`
       color:${({ theme }) => theme.colors.pink.medium};
       text-decoration:none;
     }
-  }
-
-  > ${ToggleThemeContainer}{
-    position: fixed; 
-    z-index: 1; 
-    right: 3rem; 
-    top: 3rem; 
-    font-size:${({ theme }) => theme.font.sizes.lg};
-    padding:.5rem;
   }
 `;
 
