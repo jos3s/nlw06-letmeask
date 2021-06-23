@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import * as Styled from './../../styles/authPages';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
+import { database } from '../../services/firebase';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -12,9 +13,14 @@ import { Letmeask } from '../../components/Letmeask';
 import ilustrationImg from "../../assets/images/illustration.svg";
 import googleIcon from "../../assets/images/google-icon.svg";
 
+
 export const Home = () => {
   const history = useHistory();
+  
   const [alert, setAlert] = useState("not-connected");
+  const [signInRoom, setSignInRoom] = useState('not-connected');
+  const [roomCode, setRoomCode] = useState('');
+
   const { user, signInWithGoogle } = useAuth();
 
   const handleCreateRoom = async () => {
@@ -22,7 +28,25 @@ export const Home = () => {
     setAlert("conected");
     setTimeout(() => {
       history.push('/rooms/new');
-    }, 3000);
+    }, 2100);
+  }
+
+  const handleJoinRoom = async (event:FormEvent) => {
+    event.preventDefault();
+
+    if(roomCode.trim()==='') return;
+
+    const roomRef=await database.ref(`rooms/${roomCode}`).get();
+
+    if(!roomRef.exists()){
+      setSignInRoom('error');
+      return;
+    }
+
+    setSignInRoom('conectedRoom');
+    setTimeout(() => {
+      history.push(`/rooms/${roomCode}`);
+    },2100);
   }
 
   return (
@@ -45,8 +69,16 @@ export const Home = () => {
 
           <Styled.Separator>ou entre em uma sala</Styled.Separator>
 
-          <form>
-            <Input type="text" placeholder="Digite o código da sala" />
+          {signInRoom === "conectedRoom" && <Toast type="info">Conectado a sala com sucesso!</Toast>}
+          {signInRoom === "error" && <Toast type="info">A sala não existe!</Toast>}
+
+          <form onSubmit={handleJoinRoom}>
+            <Input 
+              type="text" 
+              placeholder="Digite o código da sala"
+              value={roomCode}
+              onChange={event => setRoomCode(event.target.value)}
+            />
             <Button btnType="fill" type="submit">
               Entrar na sala
             </Button>
