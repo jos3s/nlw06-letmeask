@@ -32,7 +32,7 @@ export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.md} 0 0 ${({ theme }) => theme.borderRadius.md}; /* Rounded borders */
   padding: 16px; 
   position: fixed; 
-  z-index: 1; 
+  z-index: 3; 
   right: 0; 
   top: 30px; 
   animation: ${FadeIn} 0.5s, ${FadeOut} .5s 1s;
