@@ -33,7 +33,7 @@ export const Text = styled.span`
   color: ${({ theme }) => theme.colors.textColor.primary};
   align-self: center;
   padding:0 ${({ theme }) => theme.spacings.md} 0 12px;
-  width:23rem;
+  width:23.5rem;
   font-size:${({ theme }) => theme.font.sizes.sm};
   font-weight:500;
 `;
