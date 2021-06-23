@@ -8,6 +8,8 @@ import { Letmeask } from "../../components/Letmeask";
 import { Button } from "../../components/Button";
 import { RoomCode } from '../../components/RoomCode';
 import { FormEvent, useEffect, useState } from 'react';
+import { Toast } from '../../components/Toast';
+import { ToggleTheme } from '../../components/ToggleTheme';
 
 type FirebaseQuestions=Record<string,{
   author:{
@@ -38,6 +40,7 @@ export const Room = () => {
   const [newQuestion, setNewQuestion] = useState('');
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [title, setTitle] = useState('');
+  const [questionSend, setQuestionSend] = useState(false);
 
   const {user} = useAuth();
   const params =useParams<RoomParams>();
@@ -83,17 +86,24 @@ export const Room = () => {
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
     setNewQuestion('');
+    setQuestionSend(true);
+    setTimeout(() => {
+      setQuestionSend(false);
+    },1500);
   }
 
   return (
     <Styled.Container>
       <Styled.Header>
         <div>
-          <Letmeask height="3.5em"/>
-          <RoomCode code={roomId}/>
+          <Letmeask height="3em"/>
+          <Styled.Tools>
+            <RoomCode code={roomId}/>
+            <ToggleTheme/>
+          </Styled.Tools>
         </div>
       </Styled.Header>
-
+      {questionSend && <Toast type="info">Pergunta enviada!</Toast>}
       <Styled.Main>
         <Styled.Title>
           <h1>Sala {title}</h1>

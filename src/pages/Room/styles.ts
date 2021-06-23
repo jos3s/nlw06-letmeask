@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import {Container as Letmeask} from "../../components/Letmeask/styles"
 import {Button as ButtonContainer} from "../../components/Button/styles"
+import {Container as ToastContainer} from "../../components/Toast/styles"
+import {Button as ToggleThemeContainer} from "../../components/ToggleTheme/styles"
 
 export const Container = styled.div`
-
+  ${ToastContainer}{
+    top:3rem;
+  }
 `;
 
 export const Header = styled.div`
   padding:${({ theme })=>theme.spacings.lg};
-  border-bottom:1px solid ${({ theme })=>theme.title ==="dark" ? theme.colors.black: theme.colors.gray.light};
+  border-bottom:1px solid ${({ theme })=>theme.isLight  ?  theme.colors.gray.light :theme.colors.black};
 
   > div{
     max-width:120rem;
@@ -16,10 +19,18 @@ export const Header = styled.div`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    
-    > ${Letmeask}{
-      width:45px;
-    }
+  }
+
+`;
+
+export const Tools = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+
+  ${ToggleThemeContainer}{
+    font-size:3rem;
   }
 `;
 
@@ -33,7 +44,7 @@ export const Main = styled.div`
       border:0;
       padding:${({ theme })=>theme.spacings.md};
       border-radius:${({ theme })=>  theme.borderRadius.md};
-      background:${({ theme }) =>  theme.title ==="dark" ? theme.colors.bg.input : theme.colors.white.light};
+      background:${({ theme }) =>  theme.colors.bg.input};
       color:${({ theme }) => theme.colors.textColor.primary};
       box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
       resize:vertical;
