@@ -9,6 +9,7 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Toast } from '../../components/Toast';
 import { Letmeask } from '../../components/Letmeask';
+import { ToggleTheme } from '../../components/ToggleTheme';
 
 import ilustrationImg from "../../assets/images/illustration.svg";
 import googleIcon from "../../assets/images/google-icon.svg";
@@ -58,6 +59,7 @@ export const Home = () => {
       </Styled.Left>
       <Styled.Right as="main">
         <Styled.Content>
+          <ToggleTheme />
           <Letmeask/>
 
           <Button btnG={true} btnType="fill" onClick={handleCreateRoom}>

@@ -11,6 +11,7 @@ import { Letmeask } from '../../components/Letmeask';
 import { Toast } from '../../components/Toast';
 
 import ilustrationImg from "../../assets/images/illustration.svg";
+import { ToggleTheme } from '../../components/ToggleTheme';
 
 export const NewRoom = () => {
   const [newRoom, setNewRoom] = useState('')
@@ -46,6 +47,7 @@ export const NewRoom = () => {
       <Styled.Right as="main">
         <Styled.Content>
           <Letmeask/>
+          <ToggleTheme/>
           <Styled.User>
             <img src={user?.avatar} alt={user?.name}/>
             <h2>Eai {user?.name}, crie uma nova sala:</h2>
