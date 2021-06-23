@@ -17,7 +17,11 @@ export const Button = styled.button<ButtonProps>`
     ? (btnG ? theme.colors.google : theme.colors.purple.light )
     : ("transparent")) };
 
-  color:${({ theme }) => theme.colors.white.medium};
+  color:${({ theme, btnType,btnG }) => (
+    btnType==="fill"
+    ?  (theme.colors.white.light )
+    : (theme.isLight ? theme.colors.white.light : theme.colors.purple.light)
+  )};
   width:100%;
   padding:0 ${({ theme }) => theme.spacings.xl};
 
