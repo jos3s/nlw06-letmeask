@@ -5,6 +5,7 @@ const styles = {
     primary: "'Poppins', sans-serif;",
     secondary: "'Roboto', sans-serif;",
     sizes: {
+      xsm:'1.2rem',
       sm: '1.4rem',
       md: '1.6rem',
       lg: '2.4rem',
@@ -32,7 +33,7 @@ export const light: DefaultTheme = {
     bg: {
       body: "#F8F8F8",
       modal: "#F8F8F8",
-      input:"#F8F8F8",
+      input:"#fff",
     },
     textColor: {
       primary: "#29292E",
@@ -69,9 +70,9 @@ export const dark: DefaultTheme = {
   isLight:false,
   colors: {
     bg: {
-      body: "#0e1027 ",
+      body: "#111111 ",
       modal: "#29292E",
-      input:"#030518",
+      input:"#2d2d2d",
     },
     textColor: {
       primary: "#FEFEFE",
@@ -82,7 +83,7 @@ export const dark: DefaultTheme = {
     shadow: "#050206",
     purple: {
       light: "#835AFD",
-      dark: "#835afd99",
+      dark: "#835afd70",
     },
     google:'#EA4335',
     danger: "#E73F5D",
