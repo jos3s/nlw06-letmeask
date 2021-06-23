@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import { Container as ToastContainer} from "./../Toast/styles";
 
 export const Container = styled.button`
   background:transparent;
   border:none;
-
-  > ${ToastContainer}{
-    top:12rem;
-  }
 `;
 
 export const Button = styled.button`
