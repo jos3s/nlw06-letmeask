@@ -8,6 +8,7 @@ export const Input = styled.input`
   color:${({ theme }) => theme.colors.textColor.input};
   border: ${({ theme }) =>theme.isLight ? theme.colors.gray.medium +" .1em solid" : "none"};
   width:100%;
+  box-shadow: 0 1px 8px  ${({ theme }) => theme.isLight? "rgb(0,0,0,0)" :"rgba(24,24,24,20%)" } ;
 
   &:focus{
     outline:none;

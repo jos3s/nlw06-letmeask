@@ -45,7 +45,7 @@ export const Form = styled.form`
     border-radius:${({ theme })=>  theme.borderRadius.md};
     background:${({ theme }) =>  theme.colors.bg.input};
     color:${({ theme }) => theme.colors.textColor.primary};
-    box-shadow: 0 .2rem 1.2rem rgba(0,0,0,0.04);
+    box-shadow: 0 1px 8px  ${({ theme }) => theme.isLight? "rgba(0,0,0,20%)" :"rgba(24,24,24,20%)" } ;
     resize:vertical;
     min-height:13rem;
   }
