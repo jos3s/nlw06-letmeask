@@ -34,6 +34,10 @@ export const Left = styled.div`
     margin-top:${({ theme }) => theme.spacings.md};
     color:${({ theme }) => theme.colors.white.light};
   }
+
+  @media (max-width:55rem) {
+    display:none;
+  }
 `;
 
 export const Right = styled.div`
@@ -59,6 +63,18 @@ export const Content = styled.div`
 
   & > ${LogoContainer}{
     align-self:center;
+  }
+
+  >strong.mobile{
+    display:none;
+    color:${({ theme }) => theme.colors.textColor.details};
+  }
+
+  @media (max-width:55rem) {
+    >strong.mobile{
+      display:block;
+      margin: ${({ theme }) => theme.spacings.xl} 0;
+    }
   }
 
   h2{ 
