@@ -14,14 +14,15 @@ export const Button = styled.button<ButtonProps>`
   border:${({btnType, theme }) => btnType!=="fill"? theme.colors.purple.light +" solid .2rem " : 0} ;
   background:${({btnG, btnType, theme }) => (
     btnType==="fill"
-    ? (btnG ? theme.colors.google : theme.colors.purple.light )
+    ? (btnG ? theme.colors.google : theme.isLight ? theme.colors.purple.light: theme.colors.purple.dark)
     : ("transparent")) };
 
-  color:${({ theme, btnType,btnG }) => (
+  color:${({ theme, btnType, btnG }) => (
     btnType==="fill"
-    ?  (theme.colors.white.light )
-    : (theme.isLight ? theme.colors.white.light : theme.colors.purple.light)
+    ? (theme.colors.white.light )
+    : (theme.isLight ? theme.colors.textColor.primary : theme.colors.purple.light)
   )};
+  
   width:100%;
   padding:0 ${({ theme }) => theme.spacings.xl};
 

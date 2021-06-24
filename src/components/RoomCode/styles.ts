@@ -11,14 +11,14 @@ export const Button = styled.button`
   overflow: hidden;
 
   background:${({ theme }) => theme.colors.bg.body};
-  border: ${({ theme }) => theme.colors.purple.light} 0.1rem solid;
+  border: ${({ theme }) => theme.isLight ? theme.colors.purple.light :theme.colors.purple.dark} 0.1rem solid;
   cursor:pointer;
 
   display: flex;
 `;
 
 export const Icon = styled.div`
-  background:${({ theme }) => theme.colors.purple.light};
+  background:${({ theme }) => theme.isLight ? theme.colors.purple.light :theme.colors.purple.dark};
   padding: 0 1.2rem;
   display:flex;
   align-items: center;
