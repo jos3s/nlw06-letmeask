@@ -36,7 +36,7 @@ export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
       setTheme(light);
     }
   };
-  console.log(theme)
+  
   return (
     <ThemeContext.Provider
     value={{
