@@ -1,8 +1,10 @@
 import * as Styled from './styles';
+import { Link } from 'react-router-dom';
 
 export const Letmeask=(props:any)=>{
   return (
-    <Styled.Container >
+    <Link to="/">
+      <Styled.Container >
         <svg width="157" height="75" viewBox="0 0 157 75" fill="none"
     xmlns="http://www.w3.org/2000/svg" {...props} alt="Letmeask Logo">
         <path d="M0 18.999H4.47282V40.2735H0V18.999Z" fill="currentColor"/>
@@ -34,5 +36,6 @@ export const Letmeask=(props:any)=>{
         </defs>
       </svg>
     </Styled.Container>
+    </Link>
   )
 }
