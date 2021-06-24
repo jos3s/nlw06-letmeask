@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import * as Styled from './styles';
 
 type QuestionProps={
@@ -5,10 +6,11 @@ type QuestionProps={
   author:{
     name:string,
     avatar:string,
-  }
+  },
+  children?:ReactNode,
 }
 
-export const Question=({content,author}:QuestionProps)=>{
+export const Question=({content,author, children}:QuestionProps)=>{
   return (
     <Styled.Container>
       <p>{content}</p>
@@ -17,9 +19,9 @@ export const Question=({content,author}:QuestionProps)=>{
           <img src={author.avatar} alt={author.name} />
           <span>{author.name}</span>  
         </Styled.User>
-        <div>
-
-        </div>
+        <Styled.Buttons>
+          {children}
+        </Styled.Buttons>
       </footer>
     </Styled.Container>
   )

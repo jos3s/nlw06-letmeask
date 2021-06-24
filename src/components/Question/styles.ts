@@ -37,3 +37,40 @@ export const User = styled.div`
     color:${({ theme }) => theme.colors.textColor.details};
   }
 `;
+
+export const Buttons=styled.div`
+  >button{
+    border:0;
+    background:transparent;
+    cursor:pointer;
+
+    &.btnLike{
+      display:flex;
+      align-items:flex-end;
+      color:${({ theme }) => theme.colors.textColor.details};
+      gap:.8rem;
+      transition:all 0.2s;
+
+      >svg path{
+        stroke:${({ theme }) => theme.colors.textColor.details};
+      }
+
+      &.liked{
+        color:${({ theme }) => theme.colors.purple.light};
+
+        >svg path{
+          stroke:${({ theme }) => theme.colors.purple.light};
+        }
+      }
+
+      &:disabled{
+        cursor:not-allowed;
+      }
+    }
+
+    &:hover{
+      filter:brightness(0.8);
+    }
+    
+  }
+`;
