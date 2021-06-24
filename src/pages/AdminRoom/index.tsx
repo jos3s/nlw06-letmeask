@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 
-import { Letmeask } from "../../components/Letmeask";
+import { Header } from '../../components/Header';
 import { Button } from "../../components/Button";
 import { RoomCode } from '../../components/RoomCode';
 import { Toast } from '../../components/Toast';
@@ -21,6 +21,7 @@ type RoomParams ={
 }
 
 export const AdminRoom = () => {  
+  const [signIn, setSignIn] = useState(false);
   const [notAdmin, setNotAdmin] = useState(false);
 
   const history=useHistory();
@@ -46,8 +47,7 @@ export const AdminRoom = () => {
   const verifedAdmim = useCallback(
     async ()=>{
       const roomRef =await database.ref(`rooms/${roomId}`).get();
-      console.log(roomRef.val().authorId !== user?.id, roomRef.val().authorId,user?.id)
-      if (roomRef.val().authorId !== user?.id){
+      if (roomRef.val()?.authorId !== user?.id){
         setNotAdmin(true);
         setTimeout(()=>{
           history.push('/');
@@ -58,24 +58,29 @@ export const AdminRoom = () => {
   )
 
   useEffect(() => {
-    verifedAdmim();
-  }, [verifedAdmim])
+    if(user!==undefined){
+      setSignIn(true);
+      verifedAdmim();
+    }
+  },[user,verifedAdmim]);
+
+  useEffect(() => {
+    if(signIn){
+      verifedAdmim();
+    }
+  },[signIn,verifedAdmim]);
+
 
 
   return (
     <Styled.Container>
-      <Styled.Header>
-        <div>
-          <Letmeask height="3em"/>
-          <Styled.Tools>
-            <RoomCode code={roomId}/>
-            <Button btnType="fill" onClick={handleEndRoom}>Encerrar Sala</Button>
-            <ToggleTheme/>
-          </Styled.Tools>
-        </div>
-      </Styled.Header>
-
-      {!notAdmin && (
+      <Header>
+        <RoomCode code={roomId}/>
+        <Button btnType="fill" onClick={handleEndRoom}>Encerrar Sala</Button>
+        <ToggleTheme/>
+      </Header>
+      
+      {(!notAdmin && signIn) && (
         <Styled.Main>
         
           <Styled.Left>
@@ -84,16 +89,16 @@ export const AdminRoom = () => {
             </Styled.Title>
           
             <Styled.Questions>
-              {questions.map(question=>{
+              {questions?.map(question=>{
                 return (
                   <Question 
-                    key={question.id}
-                    content={question.content}
-                    author={question.author}
+                    key={question?.id}
+                    content={question?.content}
+                    author={question?.author}
                   >
                     <button
                       type="button"
-                      onClick={()=> handleDeleteQuestion(question.id)}
+                      onClick={()=> handleDeleteQuestion(question?.id)}
                     >
                       <img src={deletImg} alt="Remover pergunta"/>
                     </button>
@@ -107,9 +112,21 @@ export const AdminRoom = () => {
           <Styled.Right>
 
             <Styled.Cards>
-              <Card btnStyle="primary" value={questions.length} text="Perguntas" />
-              <Card btnStyle="fill" value={questions.length} text="Perguntas" />
-              <Card btnStyle="outline" value={questions.length} text="Perguntas" />
+              <Card 
+                btnStyle="primary" 
+                value={questions?.length || 0} 
+                text="Perguntas"
+               />
+              <Card 
+                btnStyle="fill" 
+                value={questions?.reduce((ac, {likeCount})=> ac+likeCount, 0) || 0} 
+                text="Likes"
+               />
+              <Card 
+                btnStyle="outline" 
+                value={questions?.length || 0} 
+                text="Perguntas"
+               />
             </Styled.Cards>
           
           </Styled.Right>
