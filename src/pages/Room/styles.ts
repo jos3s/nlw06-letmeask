@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import {Button as ButtonContainer} from "../../components/Button/styles"
 import {Container as ToastContainer} from "../../components/Toast/styles"
-import {Button as ToggleThemeContainer} from "../../components/ToggleTheme/styles"
-
-
 
 export const Container = styled.div`
   ${ToastContainer}{
@@ -11,31 +8,6 @@ export const Container = styled.div`
       top:auto;
       bottom: 4rem;
     }
-  }
-`;
-
-export const Header = styled.div`
-  padding:${({ theme })=>theme.spacings.lg};
-  border-bottom:1px solid ${({ theme })=>theme.isLight  ?  theme.colors.gray.light :theme.colors.black};
-
-  > div{
-    max-width:120rem;
-    margin:0 auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-
-`;
-
-export const Tools = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
-
-  ${ToggleThemeContainer}{
-    font-size:3rem;
   }
 `;
 
@@ -121,7 +93,7 @@ export const Title = styled.div`
 
   >h1{
     font-family:${({ theme })=>theme.font.primary};
-    font-size:${({ theme })=>theme.font.sizes.lg};
+    font-size:${({ theme })=>theme.font.sizes.xl};
     color:${({ theme }) => theme.colors.textColor.primary};
   }
 `;
