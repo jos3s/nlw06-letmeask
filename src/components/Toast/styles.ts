@@ -1,5 +1,6 @@
 import styled, {keyframes} from "styled-components";
 
+
 const FadeIn = keyframes`
   from {
     right: -3em; 
@@ -26,7 +27,7 @@ export const Container = styled.div`
   font-weight:500;
   color:${({ theme }) => theme.colors.white.light};
   min-width: 250px; 
-  background-color: ${({ theme, className }) => className ==="info" ? theme.colors.purple.light : className ==="error" ? theme.colors.danger : "#FFA000"};
+  
   color: #fff; 
   text-align: center; 
   border-radius: ${({ theme }) => theme.borderRadius.md} 0 0 ${({ theme }) => theme.borderRadius.md}; /* Rounded borders */
@@ -35,8 +36,25 @@ export const Container = styled.div`
   z-index: 3; 
   right: 0; 
   top: 30px; 
-  animation: ${FadeIn} 0.5s, ${FadeOut} .5s 1s;
-  animation-fill-mode: none, forwards;
+
+  &.animation{
+    animation: ${FadeIn} 0.5s, ${FadeOut} .5s 1s;
+    animation-fill-mode: none, forwards;
+  }
+  
+  &.info{
+    background-color: ${({ theme }) => theme.colors.purple.light};
+  }
+
+  &.warning{
+    background-color: #FFA000;
+  }
+
+  &.error{
+    background-color: ${({ theme}) => theme.colors.danger};
+  }
+  
+  
 
   p{
     display:flex;
