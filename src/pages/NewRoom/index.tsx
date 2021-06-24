@@ -22,18 +22,28 @@ export const NewRoom = () => {
   const handleCreateRoom=async (event: FormEvent)=>{
     event.preventDefault();
 
-    if(newRoom.trim()==="") return;
+    if(newRoom.trim()===""){
+      setNewRoomState('warning');
+      setTimeout(() => {
+        setNewRoomState('not-create');
+      }, 2000);
+      return;
+    };
 
     const roomRef=database.ref('rooms');
 
-    const firebaseRoom=await roomRef.push({
-      title:newRoom,
-      authorId:user?.id,
-    });
-    setNewRoomState('create');
-    setTimeout(() => {
-      history.push(`/rooms/${firebaseRoom.key}`);
-    }, 2100);
+    try{
+      const firebaseRoom=await roomRef.push({
+        title:newRoom,
+        authorId:user?.id,
+      });
+      setNewRoomState('create');
+      setTimeout(() => {
+        history.push(`/admin/rooms/${firebaseRoom.key}`);
+      }, 2100);
+    }catch{
+      setNewRoomState('error');
+    }
   }
 
   return (
@@ -43,11 +53,11 @@ export const NewRoom = () => {
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as suas dúvidas da sua audiência em tempo-real</p>
       </Styled.Left>
-      {newRoomState==="create" && <Toast type="info">Sala criada com sucesso!</Toast>}
+
       <Styled.Right as="main">
         <Styled.Content>
-          <Letmeask/>
           <ToggleTheme/>
+          <Letmeask/>
           <Styled.User>
             <img src={user?.avatar} alt={user?.name}/>
             <h2>Eai {user?.name}, crie uma nova sala:</h2>
@@ -67,6 +77,18 @@ export const NewRoom = () => {
           <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link></p>
         </Styled.Content>
       </Styled.Right>
+
+  
+        {newRoomState==="create" && (
+            <Toast type="info">Sala criada com sucesso!</Toast>
+        )}
+        {newRoomState === "warning" && (
+            <Toast type="warning">Digite um nome para a sala!</Toast>
+        )}
+        {newRoomState === "error" && (
+            <Toast type="warning">Houve um error ao criar a sala!</Toast>
+        )}
+
     </Styled.Container>
   )
 }
