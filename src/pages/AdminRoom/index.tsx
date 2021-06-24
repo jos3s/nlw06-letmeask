@@ -1,6 +1,6 @@
-import { FormEvent, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
@@ -12,59 +12,55 @@ import { Toast } from '../../components/Toast';
 import { ToggleTheme } from '../../components/ToggleTheme';
 import { Card } from '../../components/Card';
 import { Question } from '../../components/Question';
+
+import deletImg from './../../assets/images/delete.svg';
 import { database } from '../../services/firebase';
 
 type RoomParams ={
   id: string,
 }
 
-export const AdminRoom = () => {
-  const [newQuestion, setNewQuestion] = useState('');
-  
-  const [questionSend, setQuestionSend] = useState('not');
-  
+export const AdminRoom = () => {  
+  const [notAdmin, setNotAdmin] = useState(false);
+
+  const history=useHistory();
   const params =useParams<RoomParams>();
   const roomId=params.id;
-
+  
   const {user} = useAuth();
   const {questions,title} = useRoom(roomId);
-  
 
-  const handleSendQuestion = async (event: FormEvent)=>{
-    event.preventDefault();
-    if(newQuestion.trim()==='') {
-      setQuestionSend('warning');
-      setTimeout(() => {
-        setQuestionSend('not');
-      },1500);
-      return;
-    };
-
-    if(!user) {
-      setQuestionSend('error');
-      setTimeout(() => {
-        setQuestionSend('not');
-      },1500);
-      return;
-    };
-
-    const question={
-      content:newQuestion,
-      author:{
-        name:user.name,
-        avatar:user.avatar,
-      },
-      isHighlihted:false,
-      isAnswer:false,
+  const handleDeleteQuestion= async (questionId:string)=>{
+    if(window.confirm('Deseja deletar essa pergunta?')){
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
     }
-
-    await database.ref(`rooms/${roomId}/questions`).push(question);
-    setNewQuestion('');
-    setQuestionSend('send');
-    setTimeout(() => {
-      setQuestionSend('not');
-    },1500);
   }
+
+  const handleEndRoom=async () => {
+    await database.ref(`rooms/${roomId}`).update({
+      endeAt:new Date(),
+    });
+    history.push('/rooms/new');
+  }
+
+  const verifedAdmim = useCallback(
+    async ()=>{
+      const roomRef =await database.ref(`rooms/${roomId}`).get();
+      console.log(roomRef.val().authorId !== user?.id, roomRef.val().authorId,user?.id)
+      if (roomRef.val().authorId !== user?.id){
+        setNotAdmin(true);
+        setTimeout(()=>{
+          history.push('/');
+        }, 3000);
+      }
+    },
+    [roomId, user?.id, history],
+  )
+
+  useEffect(() => {
+    verifedAdmim();
+  }, [verifedAdmim])
+
 
   return (
     <Styled.Container>
@@ -73,45 +69,56 @@ export const AdminRoom = () => {
           <Letmeask height="3em"/>
           <Styled.Tools>
             <RoomCode code={roomId}/>
-            <Button btnType="fill">Encerrar Sala</Button>
+            <Button btnType="fill" onClick={handleEndRoom}>Encerrar Sala</Button>
             <ToggleTheme/>
           </Styled.Tools>
         </div>
       </Styled.Header>
 
-      {questionSend==="error" && <Toast type="error">Você precisa estar logado!</Toast>}
-      {questionSend==="warning" && <Toast type="warning">Preencha a pergunta para enviar!</Toast>}
-      {questionSend==="send" && <Toast type="info">Pergunta enviada!</Toast>}
+      {!notAdmin && (
+        <Styled.Main>
+        
+          <Styled.Left>
+            <Styled.Title>
+              <h1>Sala {title}</h1>
+            </Styled.Title>
+          
+            <Styled.Questions>
+              {questions.map(question=>{
+                return (
+                  <Question 
+                    key={question.id}
+                    content={question.content}
+                    author={question.author}
+                  >
+                    <button
+                      type="button"
+                      onClick={()=> handleDeleteQuestion(question.id)}
+                    >
+                      <img src={deletImg} alt="Remover pergunta"/>
+                    </button>
+                  </Question> 
+                )
+              })}
+            </Styled.Questions>
+          
+          </Styled.Left>
+          
+          <Styled.Right>
 
-      <Styled.Main>
-        
-        <Styled.Left>
-          <Styled.Title>
-            <h1>Sala {title}</h1>
-          </Styled.Title>
-        
-          <Styled.Questions>
-            {questions.map(question=>{
-              return (
-                <Question 
-                  key={question.id}
-                  content={question.content}
-                  author={question.author}
-                /> 
-              )
-            })}
-          </Styled.Questions>
-        
-        </Styled.Left>
-        
-        <Styled.Right>
-          <Styled.Cards>
-            <Card btnStyle="primary" value={questions.length} text="Perguntas" />
-            <Card btnStyle="fill" value={questions.length} text="Perguntas" />
-            <Card btnStyle="outline" value={questions.length} text="Perguntas" />
-          </Styled.Cards>
-        </Styled.Right>
-      </Styled.Main>
+            <Styled.Cards>
+              <Card btnStyle="primary" value={questions.length} text="Perguntas" />
+              <Card btnStyle="fill" value={questions.length} text="Perguntas" />
+              <Card btnStyle="outline" value={questions.length} text="Perguntas" />
+            </Styled.Cards>
+          
+          </Styled.Right>
+        </Styled.Main>
+      )}
+
+      {notAdmin  &&( 
+        <Toast type="error">Você não é o administrador da sala!</Toast>
+      )}
     </Styled.Container>
   );
 };
