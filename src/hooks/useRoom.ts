@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { database } from '../services/firebase';
 import { useAuth } from "./useAuth";
@@ -31,6 +32,7 @@ type Questions={
 
 
 export const useRoom=(roomId:string)=>{
+  const history =useHistory();
   const {user} = useAuth();
 
   const [questions, setQuestions] = useState<Questions[]>([]);
@@ -41,20 +43,23 @@ export const useRoom=(roomId:string)=>{
 
     roomRef.on('value',room=>{
       const databaseRoom=room.val();
-      const firebaseQuestions:FirebaseQuestions=databaseRoom.questions ?? {};
-      const parsedQuestion=Object.entries(firebaseQuestions).map(([key, value])=>{
-        return {
-          id:key,
-          content:value.content,
-          author:value.author,
-          isHighlihted:value.isHighlihted,
-          isAnswer:value.isAnswer,
-          likeCount:Object.values(value.likes ?? {}).length,
-          likeId:Object.entries(value.likes ?? {}).find(([key, like])=> like.authorId === user?.id)?.[0],
-        }
-      });
-      setTitle(databaseRoom.title);
-      setQuestions(parsedQuestion);
+        if(!databaseRoom?.title) return history.push('/notfound');
+
+        const firebaseQuestions:FirebaseQuestions=databaseRoom?.questions ?? {};
+        
+        const parsedQuestion=Object.entries(firebaseQuestions).map(([key, value])=>{
+          return {
+            id:key,
+            content:value.content,
+            author:value.author,
+            isHighlihted:value.isHighlihted,
+            isAnswer:value.isAnswer,
+            likeCount:Object.values(value.likes ?? {}).length,
+            likeId:Object.entries(value.likes ?? {}).find(([key, like])=> like.authorId === user?.id)?.[0],
+          }
+        });
+        setTitle(databaseRoom?.title);
+        setQuestions(parsedQuestion);
     })
 
   
