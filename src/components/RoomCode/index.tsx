@@ -6,6 +6,7 @@ import { Toast } from '../Toast';
 
 type RoomCodeProps={
   code: string,
+  text?:boolean
 }
 
 export const RoomCode =(props:RoomCodeProps)=>{
@@ -21,14 +22,20 @@ export const RoomCode =(props:RoomCodeProps)=>{
   }
   
   return (
-    <Styled.Container>
+    <>
       {copied && <Toast type="info">Copiado para o clipboard!</Toast>}
       <Styled.Button onClick={copyRoomCodeToClipboard}>
         <Styled.Icon>
           <img src={copyImg} alt="Copiar código da sala"/>
         </Styled.Icon>
-        <Styled.Text>Sala #{props.code}</Styled.Text>
+        <Styled.Text>
+          {props.text ? (
+            'Copie o codigo'
+          ):(
+           `Sala #${props.code}`
+          )}
+        </Styled.Text>
       </Styled.Button>
-    </Styled.Container>
+    </>
   )
 }
