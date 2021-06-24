@@ -8,7 +8,7 @@ type ButtonProps={
 export const Button = styled.button<ButtonProps>`
   margin-top:${({ theme }) => theme.spacings.sm};
   height: 5rem;
-  border-radius:${({ theme }) => theme.borderRadius.md};
+  border-radius: 0 ${({ theme }) => theme.borderRadius.md} ${({ theme }) => theme.borderRadius.md};
   font-weight:500;
 
   border:${({btnType, theme }) => btnType!=="fill"? theme.colors.purple.light +" solid .2rem " : 0} ;

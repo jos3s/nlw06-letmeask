@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
-  background:transparent;
-  border:none;
-`;
-
 export const Button = styled.button`
+  width:100%;
   height:4rem;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border-radius:0 ${({ theme }) => theme.borderRadius.md} ${({ theme }) => theme.borderRadius.md};
   overflow: hidden;
 
-  background:${({ theme }) => theme.colors.bg.body};
+  background:transparent;
   border: ${({ theme }) => theme.isLight ? theme.colors.purple.light :theme.colors.purple.dark} 0.1rem solid;
   cursor:pointer;
 
@@ -33,7 +29,7 @@ export const Text = styled.span`
   color: ${({ theme }) => theme.colors.textColor.primary};
   align-self: center;
   padding:0 ${({ theme }) => theme.spacings.md} 0 12px;
-  width:23.5rem;
+  max-width:23.5rem;
   font-size:${({ theme }) => theme.font.sizes.sm};
   font-weight:500;
 `;

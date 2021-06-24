@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container=styled.div`
   background:${({ theme }) => theme.colors.bg.input } ;
-  border-radius:.8rem;
+  border-radius:0 ${({ theme }) => theme.borderRadius.md} ${({ theme }) => theme.borderRadius.md};
   box-shadow: 0 0.1rem 0.4rem  ${({ theme }) => theme.isLight ? "rgba(0,0,0,20%)" : "rgba(24,24,24,20%)" } ;
   padding:2.4rem;
 
@@ -18,14 +18,14 @@ export const Container=styled.div`
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-top:2.4rem;
+    margin-top:${({ theme})=>theme.spacings.lg};
   }
 `;
 
 export const User = styled.div`
   display:flex;
   align-items:center;
-  gap:1.2rem;
+  gap:${({ theme})=>theme.spacings.xsm};
 
   > img {
     width:${({ theme }) => theme.spacings.xl};

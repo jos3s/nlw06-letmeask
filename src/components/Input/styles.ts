@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Input = styled.input`
   height:50px;
-  border-radius:${({ theme }) => theme.borderRadius.md};
+  border-radius: 0 ${({ theme }) => theme.borderRadius.md} ${({ theme }) => theme.borderRadius.md};
   padding:0 ${({ theme }) => theme.spacings.md};
   background-color:${({ theme }) =>  theme.colors.bg.input };
   color:${({ theme }) => theme.colors.textColor.input};
