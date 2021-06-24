@@ -34,16 +34,22 @@ export const Home = () => {
 
   const handleJoinRoom = async (event:FormEvent) => {
     event.preventDefault();
-
+  
     if(roomCode.trim()==='') {
       setSignInRoom('empty');
+      setTimeout(() => {
+        setSignInRoom('not-connected');
+      }, 2000);
       return;
     };
 
     const roomRef=await database.ref(`rooms/${roomCode}`).get();
-
+    
     if(!roomRef.exists()){
       setSignInRoom('error');
+      setTimeout(() => {
+        setSignInRoom('not-connected');
+      }, 2000);
       return;
     }
 
@@ -63,26 +69,19 @@ export const Home = () => {
       <Styled.Right as="main">
         <Styled.Content>
           <ToggleTheme />
+
           <Letmeask/>
           <strong className="mobile">Crie salas de Q&amp;A ao-vivo</strong>
+
           <Button btnG={true} btnType="fill" onClick={handleCreateRoom}>
             <img src={googleIcon} alt="Logo do Google" />
             Crie sua sala com o Google
           </Button>
 
-          {alert === "conected" && <Toast type="info">Você foi logado com sucesso!</Toast>}
-
+          
           <Styled.Separator>ou entre em uma sala</Styled.Separator>
 
-          {signInRoom === "conectedRoom" && (
-            <Toast type="info">Conectado a sala com sucesso!</Toast>
-          )}
-          {signInRoom === "empty" && (
-            <Toast type="warning">Digite o código da sala!</Toast>
-          )}
-          {signInRoom === "error" &&( 
-            <Toast type="error">A sala não existe!</Toast>
-          )}
+          
 
           <form onSubmit={handleJoinRoom}>
             <Input 
@@ -98,6 +97,20 @@ export const Home = () => {
 
         </Styled.Content>
       </Styled.Right>
+
+      {alert === "conected" && (
+        <Toast type="info">Você foi logado com sucesso!</Toast>
+      )}
+      {signInRoom === "conectedRoom" && (
+        <Toast type="info">Conectado a sala com sucesso!</Toast>
+      )}
+      {signInRoom === "empty" && (
+        <Toast type="warning">Digite o código da sala!</Toast>
+      )}
+      {signInRoom === "error" &&( 
+        <Toast type="error" className="noAnimation">A sala não existe!</Toast>
+      )}
+
     </Styled.Container>
   )
 }
