@@ -145,7 +145,7 @@ export const User = styled.div`
   }
 `;
 
-export const NewRoom = styled.p`
+export const LinkRoom = styled.p`
   font-size:${({ theme }) => theme.font.sizes.md};
   color:${({ theme }) => theme.isLight ? theme.colors.gray.dark : theme.colors.gray.light};
   margin-top:${({ theme }) => theme.spacings.md};

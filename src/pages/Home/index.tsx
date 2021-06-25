@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import * as Styled from './../../styles/authPages';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
@@ -94,7 +94,7 @@ export const Home = () => {
               Entrar na sala
             </Button>
           </form>
-
+          <Styled.LinkRoom>Verifique aqui <Link to="/rooms">todas as nossas salas!</Link></Styled.LinkRoom>
         </Styled.Content>
       </Styled.Right>
 
