@@ -46,6 +46,10 @@ export const NewRoom = () => {
     }
   }
 
+  const listRooms=()=>{
+    history.push(`/rooms`);
+  }
+
   return (
     <Styled.Container>
       <Styled.Left as="aside">
@@ -71,10 +75,13 @@ export const NewRoom = () => {
               onChange={event=> setNewRoom(event.target.value)}
             />
             <Button btnType="fill" type="submit">
-              Criar na sala
+              Criar nova sala
             </Button>
           </form>
-          <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link></p>
+          <Button btnType="outline" onClick={listRooms}>
+            Verificar todas as salas
+          </Button>
+          <p>Quer entrar em <Link to="/">uma sala existente?</Link></p>
         </Styled.Content>
       </Styled.Right>
 
