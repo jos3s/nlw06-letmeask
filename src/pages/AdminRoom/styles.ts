@@ -16,13 +16,21 @@ export const Main = styled.div`
 
 export const Title = styled.div`
   display:flex;
-  align-items:center;
+  flex-direction:column;
+  
   margin: 0 0 ${({ theme })=>theme.spacings.lg};
 
   >h1{
     font-family:${({ theme })=>theme.font.primary};
     font-size:${({ theme })=>theme.font.sizes.xl};
     color:${({ theme }) => theme.colors.textColor.primary};
+  }
+
+  >div{
+    display:flex;
+    color:${({ theme }) => theme.colors.textColor.primary};
+    gap:1rem;
+    align-items:center;
   }
 `;
 
@@ -63,3 +71,16 @@ export const Cards = styled.div`
 `;;
 
 export const Questions = styled.div``;
+
+export const Logout = styled.button`
+  background:transparent;
+  border:none;
+  color:${({ theme })=>theme.colors.danger};
+  width:auto;
+  padding:0;
+  font-size:${({ theme })=>theme.font.sizes.xsm};
+
+  &:hover{
+    opacity:0.9;
+  }
+`;

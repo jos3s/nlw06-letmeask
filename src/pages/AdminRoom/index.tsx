@@ -35,7 +35,7 @@ export const AdminRoom = () => {
   const params =useParams<RoomParams>();
   const roomId=params.id;
   
-  const {user} = useAuth();
+  const {user, logoutWithGoogle} = useAuth();
   const {questions,title} = useRoom(roomId);
 
   const handleDeleteQuestion= async (questionId:string|undefined)=>{
@@ -52,9 +52,16 @@ export const AdminRoom = () => {
   }
 
   const handleHighlightedQuestion= async (questionId:string)=>{
-    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-      isHighlighted:true,
-    })
+    const currentQuestion=questions.filter(question => question.id===questionId);
+    if(currentQuestion[0].isHighlighted){
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isHighlighted:false,
+      });
+    }else{
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isHighlighted:true,
+      });
+    }
   }
 
   const handleEndRoom=async () => {
@@ -112,6 +119,10 @@ export const AdminRoom = () => {
           <Styled.Left>
             <Styled.Title>
               <h1>Sala {title}</h1>
+              <div>
+                <span>{user?.name}</span>
+                <Styled.Logout onClick={logoutWithGoogle}>deslogar</Styled.Logout>
+              </div>
             </Styled.Title>
           
             <Styled.Questions>
