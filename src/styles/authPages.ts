@@ -60,7 +60,7 @@ export const Content = styled.div`
   flex-direction:column;
   align-items:stretch;
   justify-content:center;
-
+  text-align:center;
   width:100%;
   max-width:320px;
 
@@ -80,8 +80,6 @@ export const Content = styled.div`
     }
   }
 
-  text-align:center;
-
   & > ${LogoContainer}{
     align-self:center;
   }
@@ -98,23 +96,6 @@ export const Content = styled.div`
     }
   }
 
-  h2{ 
-    font-size:${({ theme }) => theme.font.sizes.lg};
-    margin:${({ theme }) => theme.spacings.xxl} 0 ${({ theme }) => theme.spacings.lg};
-    font-family:${({ theme }) => theme.font.primary};
-    color:${({ theme }) => theme.isLight ? theme.colors.black : theme.colors.white.medium};
-  }
-
-  &>p{
-    font-size:${({ theme }) => theme.font.sizes.sm};
-    color:${({ theme }) => theme.isLight ? theme.colors.gray.dark : theme.colors.gray.light};
-    margin-top:${({ theme }) => theme.spacings.md};
-    
-    >a{
-      color:${({ theme }) => theme.colors.pink.medium};
-      text-decoration:none;
-    }
-  }
 `;
 
 export const Separator = styled.div`
@@ -158,5 +139,19 @@ export const User = styled.div`
     margin-top:0;
     margin-bottom:0;
     text-align:left;
+    font-size:${({ theme }) => theme.font.sizes.lg};
+    font-family:${({ theme }) => theme.font.primary};
+    color:${({ theme }) => theme.isLight ? theme.colors.black : theme.colors.white.medium};
+  }
+`;
+
+export const NewRoom = styled.p`
+  font-size:${({ theme }) => theme.font.sizes.md};
+  color:${({ theme }) => theme.isLight ? theme.colors.gray.dark : theme.colors.gray.light};
+  margin-top:${({ theme }) => theme.spacings.md};
+
+  >a{
+    color:${({ theme }) => theme.colors.pink.medium};
+    text-decoration:none;
   }
 `;
