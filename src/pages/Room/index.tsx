@@ -25,15 +25,16 @@ export const Room = () => {
   const [newQuestion, setNewQuestion] = useState('');
   const [questionSend, setQuestionSend] = useState('not');
   const [roomFinished, setRoomFinished] = useState(false);
+  const [order, setOrder] = useState(true);
 
   const params = useParams<RoomParams>();
   const roomId=params.id;
 
   const {user,signInWithGoogle, logoutWithGoogle} = useAuth();
-  const {questions,title} = useRoom(roomId);
+  const {questions:noOrderQuestions,title} = useRoom(roomId);
 
- /*  const questionS=questions.sort((a,b)=>b.likeCount-a.likeCount);
-  console.log(questionS); */
+  const questions=noOrderQuestions.sort((a,b)=> order ? b.likeCount - a.likeCount : a.likeCount - b.likeCount);
+
   const handleCreateRoom = async () => {
     !user && await signInWithGoogle();
   }
@@ -84,6 +85,15 @@ export const Room = () => {
     }
   }
 
+  const handleSelectOrder =(event:any)=>{
+    if (event.target.value !== "moreLikes"){
+      setOrder(false);
+    }
+    if (event.target.value === "moreLikes"){
+      setOrder(true);
+    }
+  }
+
   const valideRoom=useCallback(
     async () => {
       const roomRef=await database.ref(`rooms/${roomId}`).get();
@@ -111,7 +121,7 @@ export const Room = () => {
           
         <Styled.Left>
           <Styled.Title>
-            <h1>Sala {title}</h1>
+            <h1>Sala: {title}</h1>
           </Styled.Title>
           
           {!roomFinished && (
@@ -140,6 +150,15 @@ export const Room = () => {
           )}
         
           <Styled.Questions>
+            {questions.length>0 && (
+              <Styled.Filter>
+                <span>Ordene por:</span>
+                <select onChange={handleSelectOrder} >
+                  <option value="moreLikes">Mais likes</option>
+                  <option value="lessLikes">Menos likes</option>
+                </select>
+              </Styled.Filter>
+            )}
             {questions.map(question=>{
               return (
                 <Question 

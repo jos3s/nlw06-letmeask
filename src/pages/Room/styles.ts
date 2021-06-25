@@ -155,6 +155,24 @@ export const Questions = styled.div`
   margin-top:${({ theme })=>theme.spacings.xl};
 `;
 
+export const Filter = styled.div`
+  display:flex;
+  gap:1.2rem;
+  align-items:center;
+  margin:2rem 0;
+  color:${({ theme }) => theme.colors.textColor.details};
+
+   >select{
+    background:${({ theme })=>theme.colors.bg.input};
+    color:${({ theme })=>theme.colors.textColor.primary};
+    margin:0;
+    padding:.7rem 1rem;
+    border:1px solid ${({ theme }) => theme.colors.gray.dark};
+    border-radius: 0 ${({ theme }) => theme.borderRadius.md} ${({ theme }) => theme.borderRadius.md};
+    outline:none;
+  }
+`;
+
 export const NotQuestions = styled.div`
   color:${({ theme })=>theme.colors.textColor.primary};
   width:100%;
@@ -178,9 +196,10 @@ export const Logout = styled.button`
   background:transparent;
   border:none;
   color:${({ theme })=>theme.colors.danger};
-  width:auto;
+  width:5rem;
   padding:0;
   font-size:${({ theme })=>theme.font.sizes.xsm};
+  cursor:pointer;
 
   &:hover{
     opacity:0.9;
