@@ -67,7 +67,7 @@ export const useRoom=(roomId:string)=>{
     return ()=>{
       roomRef.off('value');
     }
-  }, [roomId, user?.id])
+  }, [roomId, user?.id,history])
 
   return {questions, title}
 }
