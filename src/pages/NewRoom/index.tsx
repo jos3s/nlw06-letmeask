@@ -5,13 +5,14 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
+import { ToggleTheme } from '../../components/ToggleTheme';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Letmeask } from '../../components/Letmeask';
 import { Toast } from '../../components/Toast';
 
 import ilustrationImg from "../../assets/images/illustration.svg";
-import { ToggleTheme } from '../../components/ToggleTheme';
+
 
 export const NewRoom = () => {
   const [newRoom, setNewRoom] = useState('')
@@ -22,27 +23,34 @@ export const NewRoom = () => {
   const handleCreateRoom=async (event: FormEvent)=>{
     event.preventDefault();
 
-    if(newRoom.trim()===""){
-      setNewRoomState('warning');
+    if(user){
+      if(newRoom.trim()===""){
+        setNewRoomState('warning');
+        setTimeout(() => {
+          setNewRoomState('not-create');
+        }, 2000);
+        return;
+      };
+  
+      const roomRef=database.ref('rooms');
+  
+      try{
+        const firebaseRoom=await roomRef.push({
+          title:newRoom,
+          authorId:user?.id,
+        });
+        setNewRoomState('create');
+        setTimeout(() => {
+          history.push(`/admin/rooms/${firebaseRoom.key}`);
+        }, 2100);
+      }catch{
+        setNewRoomState('error');
+      }
+    }else{
+      setNewRoomState('not-login');
       setTimeout(() => {
-        setNewRoomState('not-create');
-      }, 2000);
-      return;
-    };
-
-    const roomRef=database.ref('rooms');
-
-    try{
-      const firebaseRoom=await roomRef.push({
-        title:newRoom,
-        authorId:user?.id,
-      });
-      setNewRoomState('create');
-      setTimeout(() => {
-        history.push(`/admin/rooms/${firebaseRoom.key}`);
-      }, 2100);
-    }catch{
-      setNewRoomState('error');
+        history.push('/');
+      },2100);
     }
   }
 
@@ -81,7 +89,7 @@ export const NewRoom = () => {
           <Button btnType="outline" onClick={listRooms}>
             Verificar todas as salas
           </Button>
-          <Styled.NewRoom>Quer entrar em <Link to="/">uma sala existente?</Link></Styled.NewRoom>
+          <Styled.LinkRoom>Quer entrar em <Link to="/">uma sala existente?</Link></Styled.LinkRoom>
         </Styled.Content>
       </Styled.Right>
 
@@ -93,7 +101,10 @@ export const NewRoom = () => {
             <Toast type="warning">Digite um nome para a sala!</Toast>
         )}
         {newRoomState === "error" && (
-            <Toast type="warning">Houve um error ao criar a sala!</Toast>
+            <Toast type="error">Houve um error ao criar a sala!</Toast>
+        )}
+        {newRoomState === "not-login" && (
+            <Toast type="error">Você precisa fazer login para criar uma sala!</Toast>
         )}
 
     </Styled.Container>
