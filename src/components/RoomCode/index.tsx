@@ -24,13 +24,13 @@ export const RoomCode =(props:RoomCodeProps)=>{
   return (
     <>
       {copied && <Toast type="info">Copiado para o clipboard!</Toast>}
-      <Styled.Button onClick={copyRoomCodeToClipboard}>
+      <Styled.Button onClick={copyRoomCodeToClipboard} aria-label="Copiar código da sala" >
         <Styled.Icon>
           <img src={copyImg} alt="Copiar código da sala"/>
         </Styled.Icon>
         <Styled.Text>
           {props.text ? (
-            'Copie o codigo'
+            'Copie o código'
           ):(
            `Sala #${props.code}`
           )}

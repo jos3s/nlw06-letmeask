@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Text as RomCodeText} from "../../components/RoomCode/styles";
 
 export const Container = styled.div``;
 
@@ -74,5 +75,11 @@ export const Rooms = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   gap: 20px;
+
+
+  ${RomCodeText}{
+    width:13rem;
+    display:block;
+  }
 
 `;
