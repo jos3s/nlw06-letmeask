@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {Container as ToastContainer} from "../../components/Toast/styles";
 
 export const Container = styled.div`
-  width:100vw;
   overflow:hidden;
   ${ToastContainer}{
     &.noAnimation{
