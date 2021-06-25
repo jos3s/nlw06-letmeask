@@ -130,5 +130,24 @@ export const Cards = styled.div`
 `;
 
 export const Questions = styled.div`
-  margin-top:${({ theme })=>theme.spacings.xl}
+  margin-top:${({ theme })=>theme.spacings.xl};
+`;
+
+export const NotQuestions = styled.div`
+  color:${({ theme })=>theme.colors.textColor.primary};
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2rem;
+  h3{
+    font-size:${({ theme })=>theme.font.sizes.lg};
+  }
+`;
+
+export const Img = styled.img`
+  margin-top:${({ theme })=>theme.spacings.xl};
+  height: 20rem;
+  width: 20rem;
 `;
