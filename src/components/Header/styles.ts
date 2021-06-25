@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {Button as ButtonContainer} from "../../components/Button/styles";
 import {Button as ToggleThemeContainer} from "../../components/ToggleTheme/styles";
-import {Button as RoomCodeContainer} from "../../components/RoomCode/styles";
+import {Button as RoomCodeContainer, Text as RoomCodeText } from "../../components/RoomCode/styles";
 
 export const Header = styled.div`
   padding:${({ theme })=>theme.spacings.lg};
@@ -43,6 +43,7 @@ export const Tools = styled.div`
     height:4rem;
     width:20rem;
     
+    
     @media(max-width:70rem){
       padding-left:0;
       padding-right:0;
@@ -52,5 +53,8 @@ export const Tools = styled.div`
 
   ${RoomCodeContainer}{
     flex:3;
+    ${RoomCodeText}{
+      padding:1rem;
+    }
   }
 `;
