@@ -43,6 +43,7 @@ export const light: DefaultTheme = {
     black: "#29292E",
     shadow: "#050206",
     purple: {
+      white:"#f4f0ff",
       light: "#835AFD",
       dark: "#835afd99",
     },
@@ -82,6 +83,7 @@ export const dark: DefaultTheme = {
     black: "#29292E",
     shadow: "#050206",
     purple: {
+      white:"#f4f0ff",
       light: "#835AFD",
       dark: "#835afd70",
     },

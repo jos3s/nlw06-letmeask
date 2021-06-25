@@ -18,6 +18,7 @@ declare module 'styled-components' {
       black: string,
       shadow: string,
       purple: {
+        white:string,
         light: string,
         dark: string,
       },
