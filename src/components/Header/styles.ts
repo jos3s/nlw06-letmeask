@@ -30,6 +30,10 @@ export const Tools = styled.div`
   align-items:center;
   gap:2rem;
 
+  @media(max-width:70rem){
+    gap:1rem;
+  }
+
   ${ToggleThemeContainer}{
     font-size:3rem;
   }
@@ -38,6 +42,12 @@ export const Tools = styled.div`
     margin:0;
     height:4rem;
     width:20rem;
+    
+    @media(max-width:70rem){
+      padding-left:0;
+      padding-right:0;
+      width:15rem;
+    }
   }
 
   ${RoomCodeContainer}{

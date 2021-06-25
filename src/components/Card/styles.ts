@@ -28,7 +28,7 @@ export const Container=styled.div<ContainerProps>`
   ? theme.colors.textColor.primary +" .2rem solid"
   : "none" };
 
-  max-width: 12.8rem;
+  width: 12.8rem;
   border-radius: 0 ${({theme})=> theme.borderRadius.md} ${({theme})=> theme.borderRadius.md};
   padding: ${({theme})=>theme.spacings.lg} 1.8rem ;
   box-shadow: 0 0.1rem 0.4rem  ${({ theme }) => theme.isLight ? "rgba(0,0,0,20%)" : "rgba(24,24,24,20%)" } ;

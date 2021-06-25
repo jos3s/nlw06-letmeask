@@ -32,4 +32,8 @@ export const Text = styled.span`
   max-width:23.5rem;
   font-size:${({ theme }) => theme.font.sizes.sm};
   font-weight:500;
+
+  @media(max-width:70rem){
+    display:none;
+  }
 `;
