@@ -63,6 +63,18 @@ export const FormFooter = styled.div`
       width:40%;
       margin-top:0;
     }
+
+    @media screen and (max-width:50rem){
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:1rem;
+
+      > ${ButtonContainer}{
+        width:100%;
+        margin-top:0;
+      }
+    }
 `;
 
 export const User = styled.div`
@@ -71,8 +83,8 @@ export const User = styled.div`
   gap:1.2rem;
 
   > img {
-    width:${({ theme }) => theme.spacings.xl};
-    height:${({ theme }) => theme.spacings.xl};
+    width:4.6rem;
+    height:4.6rem;
     border-radius:50%;
   }
 `;
@@ -80,13 +92,13 @@ export const User = styled.div`
 export const UserData = styled.div`
   display:flex;
   flex-direction:column;
-  gap:.3rem;
+  gap:.5rem;
   font-weight:500;
   font-size:${({ theme})=>theme.font.sizes.sm};
   color:${({ theme }) => theme.colors.textColor.details};
 
   &>span:nth-child(2){
-    font-size:1.2rem;
+    font-size:1.4rem;
     font-weight: 400;
   }
 `;
@@ -160,4 +172,17 @@ export const Img = styled.img`
   margin-top:${({ theme })=>theme.spacings.xl};
   height: 20rem;
   width: 20rem;
+`;
+
+export const Logout = styled.button`
+  background:transparent;
+  border:none;
+  color:${({ theme })=>theme.colors.danger};
+  width:auto;
+  padding:0;
+  font-size:${({ theme })=>theme.font.sizes.xsm};
+
+  &:hover{
+    opacity:0.9;
+  }
 `;

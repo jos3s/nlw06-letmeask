@@ -26,18 +26,16 @@ export const Room = () => {
   const [questionSend, setQuestionSend] = useState('not');
   const [roomFinished, setRoomFinished] = useState(false);
 
-  const history =useHistory();
   const params = useParams<RoomParams>();
   const roomId=params.id;
 
-  const {user,signInWithGoogle} = useAuth();
+  const {user,signInWithGoogle, logoutWithGoogle} = useAuth();
   const {questions,title} = useRoom(roomId);
-  
+
+ /*  const questionS=questions.sort((a,b)=>b.likeCount-a.likeCount);
+  console.log(questionS); */
   const handleCreateRoom = async () => {
     !user && await signInWithGoogle();
-    setTimeout(() => {
-      history.push('/rooms/new');
-    }, 2100);
   }
   
   const handleSendQuestion = async (event: FormEvent)=>{
@@ -84,7 +82,6 @@ export const Room = () => {
         authorId:user?.id,
       });
     }
-    
   }
 
   const valideRoom=useCallback(
@@ -131,6 +128,7 @@ export const Room = () => {
                     <Styled.UserData>
                       <span>{user?.name}</span>
                       <span>{user?.email}</span>
+                      <Styled.Logout onClick={logoutWithGoogle}>deslogar</Styled.Logout>
                     </Styled.UserData>
                   </Styled.User>
                 ) : (
@@ -142,7 +140,7 @@ export const Room = () => {
           )}
         
           <Styled.Questions>
-            {questions?.map(question=>{
+            {questions.map(question=>{
               return (
                 <Question 
                   key={question?.id}
@@ -207,7 +205,7 @@ export const Room = () => {
       {questionSend==="error" && (
         <Toast type="error">Você precisa estar logado!</Toast>
       )}
-      {questionSend==="warning" && (
+      {questionSend==="warning" && !user && (
         <Toast type="warning">Preencha a pergunta para enviar!</Toast>
       )}
       {roomFinished && (
