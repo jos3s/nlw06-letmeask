@@ -165,9 +165,9 @@ export const Room = () => {
                     <option value="moreLikes">Mais likes</option>
                     <option value="lessLikes">Menos likes</option>
                   </optgroup>
-                  <optgroup label="Por respondida">
-                    <option value="answeredFirst">Responidas primeiro</option>
-                    <option value="lastAnswared">Responidas por último</option>
+                  <optgroup label="Por resposta">
+                    <option value="answeredFirst">Respondidas primeiro</option>
+                    <option value="lastAnswared">Respondidas por último</option>
                   </optgroup>
                 </select>
               </Styled.Filter>
