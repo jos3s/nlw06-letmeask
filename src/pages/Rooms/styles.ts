@@ -7,6 +7,10 @@ export const Main = styled.div`
   margin:5rem auto 3rem;
   display:flex;
   gap:3rem;
+
+  @media screen and (max-width:50rem){
+    flex-direction:column-reverse;
+  }
 `;
 
 export const Title = styled.div`
@@ -48,8 +52,13 @@ export const Cards = styled.div`
   top: 1em;
   display:flex;
   flex-direction:column;
-  flex-shrink:1;
   gap:2rem;
+
+  @media screen and (max-width:60rem){
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));
+    gap:1.2rem;
+  }
 `;
 
 export const Questions = styled.div`
