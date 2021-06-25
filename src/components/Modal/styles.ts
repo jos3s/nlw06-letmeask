@@ -16,11 +16,16 @@ export const Container = styled.div`
   gap:${({theme})=>theme.spacings.md};
   color:${({ theme })=>theme.colors.textColor.primary};
 
+  >span{
+    font-size:${({ theme })=>theme.font.sizes.sm};
+    color:${({ theme })=>theme.colors.textColor.details};
+  }
+
   >div{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:2rem;
+    gap:1.5rem;
     width:100%;
   }
 `;

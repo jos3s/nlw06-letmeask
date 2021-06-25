@@ -1,13 +1,16 @@
+import { ReactNode } from 'react';
 import { Button } from '../Button';
 import {Container, StyledModal} from './styles';
+import alertImg from './../../assets/images/alert.svg';
 
 type ModalProps={
   modalVisibility:boolean, 
   setVisibility:() =>void, 
   handleConfirme:() =>void,
+  children?:ReactNode,
 }
 
-export const Modal=({modalVisibility, setVisibility, handleConfirme}:ModalProps)=>{
+export const Modal=({modalVisibility, setVisibility, handleConfirme, children}:ModalProps)=>{
   return (
     <StyledModal
       isOpen={modalVisibility}
@@ -15,7 +18,9 @@ export const Modal=({modalVisibility, setVisibility, handleConfirme}:ModalProps)
       onBackgroundClick={setVisibility}
     >
      <Container>
-      <h2>Você quer deletar a pergunta?</h2>
+      <img src={alertImg} alt=""/>
+      <h2>{children}</h2>
+      <span>Essa ação não pode ser desfeita.</span>
       <div>
         <Button  
           btnType="outline" 
@@ -27,7 +32,7 @@ export const Modal=({modalVisibility, setVisibility, handleConfirme}:ModalProps)
           btnType="fill"
           onClick={handleConfirme}
         >
-          Deletar
+          Confirmar
         </Button>
       </div>
      </Container>
