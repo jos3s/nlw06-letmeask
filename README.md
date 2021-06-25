@@ -1,6 +1,6 @@
 <h1 align="center">Letmeask 💬</h1>
 
-![Letmeask](./.github/letmeask.png)
+![Letmeask](./.github/letmeaskRoom.png)
 
 <p align="center">
   Crie salas de Q&amp;A ao-vivo. Tire as suas dúvidas da sua audiência em tempo-real
