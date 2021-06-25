@@ -1,6 +1,6 @@
 <h1 align="center">Letmeask 💬</h1>
 
-![Create React App](./.github/letmeask.png)
+![Letmeask](./.github/letmeask.png)
 
 <p align="center">
   Crie salas de Q&amp;A ao-vivo. Tire as suas dúvidas da sua audiência em tempo-real
@@ -22,7 +22,7 @@
 - Contagem do total de perguntas, likes e perguntas respondidas
 - Redirecionamento direto para a rota *admin* após criar a sala
 - Criar um component **Toast** do zero para usar em diversos momentos
-- Exibir uma sala fechada, mas sem permitir criação de perguntas
+- Exibir uma sala fechada, mas sem permitir criação de perguntas e dar like
 
 ## :bangbang: Pré-requisitos
 
