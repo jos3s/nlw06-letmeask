@@ -17,11 +17,16 @@ export const Title = styled.div`
   display:flex;
   align-items:center;
   margin: 0 0 ${({ theme })=>theme.spacings.lg};
+  justify-content:space-between;
 
   >h1{
     font-family:${({ theme })=>theme.font.primary};
     font-size:${({ theme })=>theme.font.sizes.xl};
     color:${({ theme }) => theme.colors.textColor.primary};
+  }
+  >button{
+    width:18rem;
+    margin-top:0;
   }
 `;
 

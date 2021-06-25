@@ -6,9 +6,11 @@ import { Header } from "../../components/Header";
 import { ToggleTheme } from '../../components/ToggleTheme';
 import { Card } from '../../components/Card';
 import { RoomCard } from '../../components/RoomCard';
-
+import { Button } from '../../components/Button';
+import { useHistory } from 'react-router-dom';
 
 export const Rooms = () => {
+  const history = useHistory();
   const {rooms} = useRooms();
   
   const openRooms= rooms.filter(room => !room.endeAt);
@@ -24,6 +26,7 @@ export const Rooms = () => {
         <Styled.Left>
           <Styled.Title>
             <h1>Salas</h1>
+            <Button btnType="outline" onClick={()=> history.push('/rooms/new')}>Crie uma sala</Button>
           </Styled.Title>
 
           <Styled.Rooms>
@@ -33,7 +36,7 @@ export const Rooms = () => {
               )
             })}       
           </Styled.Rooms>
-        
+          
         </Styled.Left>
         
         <Styled.Right>
