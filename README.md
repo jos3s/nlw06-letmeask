@@ -16,13 +16,16 @@
 
 ## :purple_square: Recursos adicionados ao projeto
 
-- Thema escuro
+- Tema escuro
 - Página não encontrada/Not Found
 - Rota para exibir todas as salas
 - Contagem do total de perguntas, likes e perguntas respondidas
 - Redirecionamento direto para a rota *admin* após criar a sala
 - Criar um component **Toast** do zero para usar em diversos momentos
 - Exibir uma sala fechada, mas sem permitir criação de perguntas e dar like
+- Permitir o usuário deslogar na página *admin* e ao visualizar uma sala aberta
+- Permitindo ordernar perguntas pela quantidade de likes na página da sala
+- E outras pequenas melhorias
 
 ## :bangbang: Pré-requisitos
 
