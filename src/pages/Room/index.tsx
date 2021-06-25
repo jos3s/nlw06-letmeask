@@ -25,15 +25,26 @@ export const Room = () => {
   const [newQuestion, setNewQuestion] = useState('');
   const [questionSend, setQuestionSend] = useState('not');
   const [roomFinished, setRoomFinished] = useState(false);
-  const [order, setOrder] = useState(true);
+  const [order, setOrder] = useState("moreLikes");
 
   const params = useParams<RoomParams>();
   const roomId=params.id;
 
   const {user,signInWithGoogle, logoutWithGoogle} = useAuth();
   const {questions:noOrderQuestions,title} = useRoom(roomId);
-
-  const questions=noOrderQuestions.sort((a,b)=> order ? b.likeCount - a.likeCount : a.likeCount - b.likeCount);
+  
+  
+  const questions = noOrderQuestions.sort((a,b) => {
+    if(order==="moreLikes"){
+      return a.isAnswer ? 1 : b.isAnswer ? -1 : b.likeCount - a.likeCount;
+    }else if (order==="lessLikes"){
+      return a.isAnswer ? 1 : b.isAnswer ? -1 : a.likeCount - b.likeCount;
+    }else if(order==="lastAnswared"){
+      return a.isAnswer ? 1 : b.isAnswer ? -1 : 0;
+    }else {
+      return a.isAnswer ? -1 : b.isAnswer ? 1 : 0;
+    }
+  });
 
   const handleCreateRoom = async () => {
     !user && await signInWithGoogle();
@@ -86,12 +97,8 @@ export const Room = () => {
   }
 
   const handleSelectOrder =(event:any)=>{
-    if (event.target.value !== "moreLikes"){
-      setOrder(false);
-    }
-    if (event.target.value === "moreLikes"){
-      setOrder(true);
-    }
+      console.log(event.target.value)
+      setOrder(event.target.value);  
   }
 
   const valideRoom=useCallback(
@@ -154,8 +161,14 @@ export const Room = () => {
               <Styled.Filter>
                 <span>Ordene por:</span>
                 <select onChange={handleSelectOrder} >
-                  <option value="moreLikes">Mais likes</option>
-                  <option value="lessLikes">Menos likes</option>
+                  <optgroup label="Por likes">
+                    <option value="moreLikes">Mais likes</option>
+                    <option value="lessLikes">Menos likes</option>
+                  </optgroup>
+                  <optgroup label="Por respondida">
+                    <option value="answeredFirst">Responidas primeiro</option>
+                    <option value="lastAnswared">Responidas por último</option>
+                  </optgroup>
                 </select>
               </Styled.Filter>
             )}
