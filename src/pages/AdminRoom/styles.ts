@@ -76,11 +76,12 @@ export const Logout = styled.button`
   background:transparent;
   border:none;
   color:${({ theme })=>theme.colors.danger};
-  width:auto;
+  width:5rem;
   padding:0;
   font-size:${({ theme })=>theme.font.sizes.xsm};
+  cursor:pointer;
 
   &:hover{
-    opacity:0.9;
+    opacity:0.8;
   }
 `;

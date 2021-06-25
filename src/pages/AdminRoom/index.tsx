@@ -118,7 +118,7 @@ export const AdminRoom = () => {
         
           <Styled.Left>
             <Styled.Title>
-              <h1>Sala {title}</h1>
+              <h1>Sala: {title}</h1>
               <div>
                 <span>{user?.name}</span>
                 <Styled.Logout onClick={logoutWithGoogle}>deslogar</Styled.Logout>
