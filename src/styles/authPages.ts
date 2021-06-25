@@ -48,6 +48,11 @@ export const Right = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
+
+  @media (max-width:55rem) {
+    padding-top:8rem;
+    padding-bottom:4rem;
+  }
 `;
 
 export const Content = styled.div`
@@ -68,6 +73,10 @@ export const Content = styled.div`
 
     > button{
       font-size:${({ theme }) => theme.font.sizes.xl};
+
+      @media (max-width:55rem) {
+        font-size:${({ theme }) => theme.font.sizes.lg};
+      }
     }
   }
 
