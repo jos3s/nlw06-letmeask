@@ -30,6 +30,7 @@ export const AdminRoom = () => {
   const [notAdmin, setNotAdmin] = useState(false);
   const [questionIdModalOpen, setQuestionIdModalOpen] = useState<string|undefined>();
   const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [modalTerminateRoom, setModalTerminateRoom] = useState(false);
 
   const history=useHistory();
   const params =useParams<RoomParams>();
@@ -109,7 +110,7 @@ export const AdminRoom = () => {
     <Styled.Container>
       <Header>
         <RoomCode code={roomId}/>
-        <Button btnType="fill" onClick={handleEndRoom}>Encerrar Sala</Button>
+        <Button btnType="fill" onClick={()=>setModalTerminateRoom(true)}>Encerrar Sala</Button>
         <ToggleTheme/>
       </Header>
       
@@ -196,7 +197,19 @@ export const AdminRoom = () => {
               setQuestionIdModalOpen(undefined)
             }}
             handleConfirme={()=>handleDeleteQuestion(questionIdModalOpen)}
-          />
+          >
+            Você quer deletar a pergunta?
+          </Modal>
+
+          <Modal
+            modalVisibility={modalTerminateRoom}
+            setVisibility={()=>{
+              setModalTerminateRoom(false)
+            }}
+            handleConfirme={()=>handleEndRoom()}
+          >
+            Você quer encerrar a sala?
+          </Modal>
         </Styled.Main>
       )}
 
