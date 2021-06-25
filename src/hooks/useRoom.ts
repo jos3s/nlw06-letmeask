@@ -10,7 +10,7 @@ type FirebaseQuestions=Record<string,{
     avatar: string,
   }
   content:string,
-  isHighlihted:boolean,
+  isHighlighted:boolean,
   isAnswer:boolean,
   likes:Record<string,{
     authorId:string,
@@ -24,7 +24,7 @@ type Questions={
     avatar: string,
   }
   content:string,
-  isHighlihted:boolean,
+  isHighlighted:boolean,
   isAnswer:boolean,
   likeCount:number,
   likeId:string|undefined,
@@ -52,12 +52,13 @@ export const useRoom=(roomId:string)=>{
             id:key,
             content:value.content,
             author:value.author,
-            isHighlihted:value.isHighlihted,
+            isHighlighted:value.isHighlighted,
             isAnswer:value.isAnswer,
             likeCount:Object.values(value.likes ?? {}).length,
             likeId:Object.entries(value.likes ?? {}).find(([key, like])=> like.authorId === user?.id)?.[0],
           }
         });
+
         setTitle(databaseRoom?.title);
         setQuestions(parsedQuestion);
     })
