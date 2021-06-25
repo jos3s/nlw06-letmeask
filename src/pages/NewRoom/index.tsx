@@ -81,7 +81,7 @@ export const NewRoom = () => {
           <Button btnType="outline" onClick={listRooms}>
             Verificar todas as salas
           </Button>
-          <p>Quer entrar em <Link to="/">uma sala existente?</Link></p>
+          <Styled.NewRoom>Quer entrar em <Link to="/">uma sala existente?</Link></Styled.NewRoom>
         </Styled.Content>
       </Styled.Right>
 
