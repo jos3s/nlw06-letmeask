@@ -9,6 +9,7 @@ import { RoomCard } from '../../components/RoomCard';
 import { Button } from '../../components/Button';
 import { useHistory } from 'react-router-dom';
 
+
 export const Rooms = () => {
   const history = useHistory();
   const {rooms} = useRooms();
@@ -25,14 +26,19 @@ export const Rooms = () => {
         
         <Styled.Left>
           <Styled.Title>
-            <h1>Salas</h1>
+            <h1>Salas:</h1>
             <Button btnType="outline" onClick={()=> history.push('/rooms/new')}>Crie uma sala</Button>
           </Styled.Title>
 
           <Styled.Rooms>
             {rooms.map(room=>{
               return (
-                <RoomCard title={room.name} endeAt={room.endeAt} code={room.id}/>
+                <RoomCard 
+                  key={room.id} 
+                  title={room.name} 
+                  endeAt={room.endeAt} 
+                  code={room.id}
+                />
               )
             })}       
           </Styled.Rooms>
